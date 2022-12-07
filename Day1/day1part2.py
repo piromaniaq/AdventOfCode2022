@@ -4,19 +4,17 @@ def get_data(file):
     return data
 
 
-def carry(food):
-    count = 0
-    fat = 0
-    for calories in food:
-        if calories == '':
-            count = 0
+def carry(hungry):
+    sumFat = 0
+    listFatSums = []
+    for line in hungry:
+        if line.strip() == "":
+            listFatSums.append(sumFat)
+            sumFat = 0
         else:
-            caloriesint = int(calories)
-            count += caloriesint
-
-        if count > fat:
-            fat = count
-    return fat
+            sumFat += int(line)
+    listFatSums.sort(reverse=True)
+    return listFatSums[0] + listFatSums[1] + listFatSums[2]
 
 
 if __name__ == '__main__':
